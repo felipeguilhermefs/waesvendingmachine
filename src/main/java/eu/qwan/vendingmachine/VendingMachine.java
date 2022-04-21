@@ -1,15 +1,18 @@
 package eu.qwan.vendingmachine;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class VendingMachine {
-    private Optional<Can> canToDeliver = Optional.empty();
+    private Map<Choice, Can> choices = new HashMap<>();
 
     public Optional<Can> deliver(Choice choice) {
-        return canToDeliver;
+        if (!choices.containsKey(choice)) return Optional.empty();
+        return Optional.of(choices.get(choice));
     }
 
     public void configureChoice(Choice choice, Can can) {
-        canToDeliver = Optional.of(can);
+        choices.put(choice, can);
     }
 }
