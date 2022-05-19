@@ -44,4 +44,11 @@ public class PricedVendingMachineTest {
         machine.deliver(Choice.FIZZY_ORANGE);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
     }
+    @Test
+    public void deliversACanWhenPaidThatSpecificCan() {
+        machine.configureChoice(Choice.COLA, Can.COKE, 2.0f);
+        machine.insert(1.0f);
+        assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
+    }
+
 }

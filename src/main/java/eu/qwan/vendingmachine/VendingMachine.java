@@ -6,13 +6,13 @@ import java.util.Optional;
 
 public class VendingMachine {
     private Map<Choice, Can> choices = new HashMap<>();
-    private float price;
+    private Map<Choice, Float> prices = new HashMap<>();
     private float credits;
 
     public Optional<Can> deliver(Choice choice) {
         if (!choices.containsKey(choice)) return Optional.empty();
-        if (price > credits) return Optional.empty();
-        credits -= price;
+        if (prices.get(choice) > credits) return Optional.empty();
+        credits -= prices.get(choice);
         return Optional.of(choices.get(choice));
     }
 
@@ -21,7 +21,7 @@ public class VendingMachine {
     }
 
     public void configureChoice(Choice choice, Can can, float price) {
-        this.price = price;
+        prices.put(choice, price);
         choices.put(choice, can);
     }
 
