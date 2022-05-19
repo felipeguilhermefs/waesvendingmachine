@@ -26,6 +26,6 @@ public class VendingMachine {
     }
 
     public void insert(float amount) {
-        credits = amount;
+        credits += amount;
     }
 }
