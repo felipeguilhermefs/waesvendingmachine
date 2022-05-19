@@ -23,8 +23,25 @@ public class PricedVendingMachineTest {
     }
 
     @Test
-    public void deliversWhenNotPaidThePriceExactly() {
+    public void deliversWhenPaidThePriceExactly() {
         machine.insert(1.0f);
+        assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
+    }
+    @Test
+    public void deliversWhenPaidMoreThanTheExactPrice() {
+        machine.insert(2.0f);
+        assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
+    }
+    @Test
+    public void deliversOnceForCredits() {
+        machine.insert(1.0f);
+        machine.deliver(Choice.FIZZY_ORANGE);
+        assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.empty())));
+    }
+    @Test
+    public void aMoreThanOnceWhenCreditsAllow() {
+        machine.insert(2.0f);
+        machine.deliver(Choice.FIZZY_ORANGE);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
     }
 }

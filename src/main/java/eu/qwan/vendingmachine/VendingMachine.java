@@ -11,7 +11,8 @@ public class VendingMachine {
 
     public Optional<Can> deliver(Choice choice) {
         if (!choices.containsKey(choice)) return Optional.empty();
-        if (price != credits) return Optional.empty();
+        if (price > credits) return Optional.empty();
+        credits -= price;
         return Optional.of(choices.get(choice));
     }
 
