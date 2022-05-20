@@ -4,16 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class VendingMachine {
+public class VendingMachine implements Cashier {
     private Map<Choice, Drawer> choices = new HashMap<>();
     private float credits;
 
     public Optional<Can> deliver(Choice choice) {
         if (!choices.containsKey(choice)) return Optional.empty();
-        Drawer drawer = choices.get(choice);
-        if (drawer.price > credits) return Optional.empty();
-        credits -= drawer.price;
-        return Optional.of(drawer.can);
+        return choices.get(choice).deliver(this);
+    }
+
+    @Override
+    public boolean checkout(float price) {
+        if (price > credits) return false;
+        credits -= price;
+        return true;
     }
 
     public void configureChoice(Choice choice, Can can) {
