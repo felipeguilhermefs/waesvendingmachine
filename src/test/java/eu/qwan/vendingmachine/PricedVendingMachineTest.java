@@ -42,7 +42,7 @@ public class PricedVendingMachineTest {
     }
 
     @Test
-    public void aMoreThanOnceWhenCreditsAllow() {
+    public void deliversMoreThanOnceWhenCreditsAllow() {
         machine.insert(2.0f);
         machine.deliver(Choice.FIZZY_ORANGE);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
@@ -56,7 +56,7 @@ public class PricedVendingMachineTest {
     }
 
     @Test
-    public void insertsAreAdded() {
+    public void addsInserts() {
         machine.insert(0.5f);
         machine.insert(0.5f);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
