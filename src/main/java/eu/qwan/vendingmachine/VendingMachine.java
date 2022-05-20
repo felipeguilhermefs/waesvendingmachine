@@ -5,15 +5,15 @@ import java.util.Map;
 import java.util.Optional;
 
 public class VendingMachine {
-    private Map<Choice, Can> choices = new HashMap<>();
-    private Map<Choice, Float> prices = new HashMap<>();
+    private Map<Choice, Drawer> choices = new HashMap<>();
     private float credits;
 
     public Optional<Can> deliver(Choice choice) {
         if (!choices.containsKey(choice)) return Optional.empty();
-        if (prices.get(choice) > credits) return Optional.empty();
-        credits -= prices.get(choice);
-        return Optional.of(choices.get(choice));
+        Drawer drawer = choices.get(choice);
+        if (drawer.price > credits) return Optional.empty();
+        credits -= drawer.price;
+        return Optional.of(drawer.can);
     }
 
     public void configureChoice(Choice choice, Can can) {
@@ -21,8 +21,7 @@ public class VendingMachine {
     }
 
     public void configureChoice(Choice choice, Can can, float price) {
-        prices.put(choice, price);
-        choices.put(choice, can);
+        choices.put(choice, new Drawer(can, price));
     }
 
     public void insert(float amount) {
