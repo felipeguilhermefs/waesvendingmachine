@@ -13,13 +13,6 @@ public class VendingMachine implements Cashier {
         return choices.get(choice).deliver(this);
     }
 
-    @Override
-    public boolean checkout(float price) {
-        if (price > credits) return false;
-        credits -= price;
-        return true;
-    }
-
     public void configureChoice(Choice choice, Can can) {
         configureChoice(choice, can, 0);
     }
@@ -31,4 +24,12 @@ public class VendingMachine implements Cashier {
     public void insert(float amount) {
         credits += amount;
     }
+
+    @Override
+    public boolean checkout(float price) {
+        if (price > credits) return false;
+        credits -= price;
+        return true;
+    }
+
 }
