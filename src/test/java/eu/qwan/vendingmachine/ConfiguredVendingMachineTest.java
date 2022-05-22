@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class ConfiguredVendingMachineTest {
-    private VendingMachine machine = new VendingMachine();
+    private VendingMachine machine = new VendingMachine(new CashRegister());
 
     @BeforeEach
     public void setup() {

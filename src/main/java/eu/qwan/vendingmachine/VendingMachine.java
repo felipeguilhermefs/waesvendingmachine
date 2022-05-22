@@ -4,13 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-public class VendingMachine implements Cashier {
+public class VendingMachine {
+    private final CashRegister cashRegister;
     private Map<Choice, Drawer> choices = new HashMap<>();
-    private float credits;
+
+    public VendingMachine(CashRegister cashRegister) {
+        this.cashRegister = cashRegister;
+    }
 
     public Optional<Can> deliver(Choice choice) {
         if (!choices.containsKey(choice)) return Optional.empty();
-        return choices.get(choice).deliver(this);
+        return choices.get(choice).deliver(cashRegister);
     }
 
     public void configureChoice(Choice choice, Can can) {
@@ -22,14 +26,8 @@ public class VendingMachine implements Cashier {
     }
 
     public void insert(float amount) {
-        credits += amount;
+        cashRegister.insert(amount);
     }
 
-    @Override
-    public boolean checkout(float price) {
-        if (price > credits) return false;
-        credits -= price;
-        return true;
-    }
 
 }
