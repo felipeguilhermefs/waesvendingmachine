@@ -17,4 +17,10 @@ public class CashRegister implements Cashier {
         credits -= price;
         return true;
     }
+
+    @Override
+    public boolean checkout(int price) {
+        var cents = (float) price;
+        return checkout(cents / 100.0f);
+    }
 }
