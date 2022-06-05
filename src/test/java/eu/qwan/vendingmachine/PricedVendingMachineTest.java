@@ -25,26 +25,26 @@ public class PricedVendingMachineTest {
 
     @Test
     public void deliversWhenPaidThePriceExactly() {
-        machine.insert(1.0f);
+        machine.insert(100);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
     }
 
     @Test
     public void deliversWhenPaidMoreThanTheExactPrice() {
-        machine.insert(2.0f);
+        machine.insert(200);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
     }
 
     @Test
     public void deliversOnceForCredits() {
-        machine.insert(1.0f);
+        machine.insert(100);
         machine.deliver(Choice.FIZZY_ORANGE);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.empty())));
     }
 
     @Test
     public void deliversMoreThanOnceWhenCreditsAllow() {
-        machine.insert(2.0f);
+        machine.insert(200);
         machine.deliver(Choice.FIZZY_ORANGE);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
     }
@@ -52,14 +52,14 @@ public class PricedVendingMachineTest {
     @Test
     public void deliversACanWhenPaidThatSpecificCan() {
         machine.configureChoice(Choice.COLA, Can.COKE, 2.0f);
-        machine.insert(1.0f);
+        machine.insert(100);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
     }
 
     @Test
     public void addsInserts() {
-        machine.insert(0.5f);
-        machine.insert(0.5f);
+        machine.insert(50);
+        machine.insert(50);
         assertThat(machine.deliver(Choice.FIZZY_ORANGE), is(equalTo(Optional.of(Can.FANTA))));
     }
 }
