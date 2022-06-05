@@ -11,6 +11,10 @@ public class Drawer {
         this.price = price;
     }
 
+    public Drawer(Can can, int price) {
+        this(can, price / 100.0f);
+    }
+
     Optional<Can> deliver(Cashier cashier) {
         if (!cashier.checkout((int) (price * 100))) {
             return Optional.empty();
