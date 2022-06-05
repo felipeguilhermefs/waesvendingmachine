@@ -22,7 +22,7 @@ public class VendingMachine {
     }
 
     public void configureChoice(Choice choice, Can can, int price) {
-        choices.put(choice, new Drawer(can, price / 100.0f));
+        choices.put(choice, new Drawer(can, price));
     }
 
     public void insert(int amount) {

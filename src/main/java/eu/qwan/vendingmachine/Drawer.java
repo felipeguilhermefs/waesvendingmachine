@@ -6,13 +6,9 @@ public class Drawer {
     private final Can can;
     private final float price;
 
-    public Drawer(Can can, float price) {
-        this.can = can;
-        this.price = price;
-    }
-
     public Drawer(Can can, int price) {
-        this(can, price / 100.0f);
+        this.can = can;
+        this.price = price / 100.0f;
     }
 
     Optional<Can> deliver(Cashier cashier) {
