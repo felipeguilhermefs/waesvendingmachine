@@ -6,13 +6,9 @@ public class CashRegister implements Cashier {
     public CashRegister() {
     }
 
-    public void insert(float amount) {
-        credits += amount;
-    }
-
     public void insert(int amount) {
         var cents = (float) amount;
-        insert(cents / 100.0f);
+        credits += cents / 100.0f;
     }
 
     @Override
