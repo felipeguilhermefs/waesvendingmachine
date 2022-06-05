@@ -26,7 +26,6 @@ public class VendingMachine {
     }
 
     public void insert(int amount) {
-        var cents = (float) amount;
-        cashRegister.insert(cents / 100.0f);
+        cashRegister.insert(amount);
     }
 }
