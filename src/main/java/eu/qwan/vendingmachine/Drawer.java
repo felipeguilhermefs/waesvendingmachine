@@ -4,15 +4,15 @@ import java.util.Optional;
 
 public class Drawer {
     private final Can can;
-    private final float price;
+    private final int price;
 
     public Drawer(Can can, int price) {
         this.can = can;
-        this.price = price / 100.0f;
+        this.price = price;
     }
 
     Optional<Can> deliver(Cashier cashier) {
-        if (!cashier.checkout((int) (price * 100))) {
+        if (!cashier.checkout(price)) {
             return Optional.empty();
         }
         return Optional.of(can);
