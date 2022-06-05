@@ -12,7 +12,7 @@ public class Drawer {
     }
 
     Optional<Can> deliver(Cashier cashier) {
-        if (!cashier.checkout(price)) {
+        if (!cashier.checkout((int) (price * 100))) {
             return Optional.empty();
         }
         return Optional.of(can);
