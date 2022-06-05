@@ -25,10 +25,6 @@ public class VendingMachine {
         choices.put(choice, new Drawer(can, price));
     }
 
-    public void insert(float amount) {
-        cashRegister.insert(amount);
-    }
-
     public void insert(int amount) {
         var cents = (float) amount;
         cashRegister.insert(cents / 100.0f);
