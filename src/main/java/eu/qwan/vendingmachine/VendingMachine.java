@@ -25,6 +25,10 @@ public class VendingMachine {
         choices.put(choice, new Drawer(can, price));
     }
 
+    public void configureChoice(Choice choice, Can can, int price) {
+        configureChoice(choice, can, price / 100.0f);
+    }
+
     public void insert(int amount) {
         cashRegister.insert(amount);
     }
