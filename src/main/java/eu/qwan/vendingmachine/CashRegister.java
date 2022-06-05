@@ -10,6 +10,11 @@ public class CashRegister implements Cashier {
         credits += amount;
     }
 
+    public void insert(int amount) {
+        var cents = (float) amount;
+        insert(cents / 100.0f);
+    }
+
     @Override
     public boolean checkout(float price) {
         if (price > credits) return false;
