@@ -21,12 +21,8 @@ public class VendingMachine {
         configureChoice(choice, can, 0);
     }
 
-    public void configureChoice(Choice choice, Can can, float price) {
-        choices.put(choice, new Drawer(can, price));
-    }
-
     public void configureChoice(Choice choice, Can can, int price) {
-        configureChoice(choice, can, price / 100.0f);
+        choices.put(choice, new Drawer(can, price / 100.0f));
     }
 
     public void insert(int amount) {
